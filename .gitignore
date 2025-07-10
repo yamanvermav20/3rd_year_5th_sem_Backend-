@@ -1,0 +1,7 @@
+node-modules/
+
+
+# i have to run this command so to prevent adding node module in future
+# git add .gitignore
+# git commit -m "Added .gitignore to exclude node_modules and other files"
+# git push origin main
