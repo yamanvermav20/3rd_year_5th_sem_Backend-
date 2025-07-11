@@ -42,15 +42,30 @@ function deductAmount(amount) {
 }
 
 // Calling the functions using Promise chaining
-buyProduct("Iphone 16")
-.then((amount) => {
-    console.log(amount);
-    // console.log("Product is purchased");
-    return deductAmount(amount);
-})
-.then(message => {
-    console.log(message);
-})
-.catch(err => {
-    console.log(err);
-});
+// buyProduct("Iphone 16")
+// .then((amount) => {
+//     console.log(amount);
+//     // console.log("Product is purchased");
+//     return deductAmount(amount);
+// })
+// .then(message => {
+//     console.log(message);
+// })
+// .catch(err => {
+//     console.log(err);
+// });
+
+
+async function myfun(){
+    try{
+        let amount = await buyProduct("Iphone 16")  //
+        console.log(amount)
+        let message = deductAmount(amount)
+        console.log(message)
+    }catch(error){
+        console.log(error)
+    }
+}
+console.log(myfun());
+console.log("start");
+console.log("end");
