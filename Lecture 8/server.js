@@ -20,7 +20,6 @@ app.get("/users/:id", (req, res) => {
     res.send(id);
     // res.send("ok");
 })
-
 //2. Query Parameter;
 app.get("/blogs", (req,res) => {
     console.log(req.query.title)
