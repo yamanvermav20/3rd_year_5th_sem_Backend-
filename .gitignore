@@ -1,4 +1,4 @@
-node-modules/
+node_modules/
 
 
 # i have to run this command so to prevent adding node module in future
