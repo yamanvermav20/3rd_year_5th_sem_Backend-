@@ -1,0 +1,7 @@
+#box {
+        width: 400px;
+        height: 400px;
+        background-color: lightblue;
+        border: 10px solid rgb(21, 23, 155);
+        margin: 30px;
+}
