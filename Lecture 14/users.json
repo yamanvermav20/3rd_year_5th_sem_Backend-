@@ -1,0 +1,14 @@
+[
+    {
+        "id" : "1", 
+        "name" : "Yaman",
+        "username": "yamanv",
+        "role" : "Java Developer"
+    },
+    {
+        "id" : "2", 
+        "name" : "Verma",
+        "username": "rgb",
+        "role" : "Cad Developer"
+    }
+]
