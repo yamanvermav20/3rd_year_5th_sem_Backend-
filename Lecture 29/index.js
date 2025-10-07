@@ -1,6 +1,18 @@
 const{PrismaClient} = require("./generated/prisma");
 let prisma = new PrismaClient();
 
+const express = require("express");
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
+const userRoutes = require("./routes/userRoutes")
+app.use("/api/users", userRoutes)
+
+app.listen(5555, () => {
+    console.log("server started")
+})
+
 async function addUser(email, name){
     const newUser = await prisma.user.create({
         data:{
@@ -11,7 +23,7 @@ async function addUser(email, name){
     return "User added"
 
 }
-// addUser("test@example.com", "John Doe")
+// addUser("test2@example.com", "John Doe")
 //     .then(result => console.log(result))
 //     .catch(err => console.error(err));
 
@@ -126,3 +138,30 @@ async function deleteUser(id) {
 // deleteUser("2")
 // .then((data) => console.log(data))       //if we delete user with id 2, tweet with userId 2 will also be deleted
 // .catch((err) => console.error(err));     //because of onDelete: Cascade in schema.prisma
+async function readTweets(){
+    //read all tweets
+    let alltweets = await prisma.tweet.findMany({
+        include:{
+            user:{
+                select:{
+                    name:true
+                }
+            }
+        }
+        // select:{
+        //     user:{
+        //         select:{
+        //             name:true
+        //         }
+        //     },
+        //     body: true,
+        //     date: true
+        // }
+    })
+    return alltweets;
+}
+readTweets()
+.then((data) => console.log(data))
+.catch((e) => {console.log(e)})
+
+
