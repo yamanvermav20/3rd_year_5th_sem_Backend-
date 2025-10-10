@@ -30,5 +30,8 @@ wss.on("connection", function(socket){
                 s.send(message.toString());
             });
         }
+        else if(parsedMessage.type == "create"){
+            //create a room id and send it to user;
+        }
     });
 })
