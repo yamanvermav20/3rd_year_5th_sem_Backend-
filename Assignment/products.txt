@@ -3,30 +3,30 @@
     "id": 1,
     "name": "Mobile",
     "category": "Electronics",
-    "price": 799
+    "price": 15000
   },
   {
     "id": 2,
     "name": "MacBook Air",
     "category": "Electronics",
-    "price": 1199
+    "price": 200000
   },
   {
     "id": 3,
     "name": "T-shirt",
     "category": "Clothing",
-    "price": 20
+    "price": 500
   },
   {
     "id": 4,
     "name": "Water Bottle",
     "category": "Home & Kitchen",
-    "price": 10
+    "price": 150
   },
   {
     "id": 5,
     "name": "Bluetooth Speaker",
     "category": "Electronics",
-    "price": 55
+    "price": 550
   }
 ]

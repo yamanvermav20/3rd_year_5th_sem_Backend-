@@ -14,8 +14,10 @@ wss.on("connection", function(socket){
         let parsedMessage = JSON.parse(message);
         if(parsedMessage.type == "join"){
             let roomId = parsedMessage.payload.roomId;
+            
             if(!rooms.get(roomId)){
-                rooms.set(roomId, new Set())
+                // rooms.set(roomId, new Set())
+                return socket.send("room id doesnot exist");
             }
             rooms.get(roomId).add(socket)
             socket.roomId = roomId;
@@ -32,6 +34,10 @@ wss.on("connection", function(socket){
         }
         else if(parsedMessage.type == "create"){
             //create a room id and send it to user;
+            let roomId = Math.floor(Math.random() * 100000000).toString()
+            rooms.set(roomId, new Set());
+            console.log(rooms)
+            socket.send(roomId);
         }
     });
 })

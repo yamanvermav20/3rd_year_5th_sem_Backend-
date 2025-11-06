@@ -26,6 +26,8 @@ async function buyproduct(username, productname){
         return;
     }
 
+
+    //One thing add here to not overwrite exiting arrayin orderHistory file
     let allusers = [isUserValid, isProductValid];
 
     let message = await write("./orderHistory.txt", JSON.stringify(allusers));

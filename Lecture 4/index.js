@@ -10,7 +10,7 @@ let products = [
         amount: 100000,
         quantity: 1
     }
-]
+];
 // function buyProduct(product_name, cb){
 //     //some asynchronous operations
 //     //1. get product detail from product db

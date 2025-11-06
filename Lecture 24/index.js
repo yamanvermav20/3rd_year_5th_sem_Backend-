@@ -2,13 +2,56 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Blog = require("./model/blog")
 const User = require("./model/user")
+const jwt = require("jsonwebtoken");
+
 const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-
+//middleware to verify jwt token
+function isLogin(req, res, next){
+    let token = req.headers.authorization; //❌ not case-sensitive
+    console.log(token)
+    if(!token){
+        return res.json({
+            success: false,
+            message: "Please provide a token or login"
+        })
+    }
+    let decode = jwt.verify(token, "lop")
+    if(decode){
+        req.username = decode.user.name;
+        return next()
+    }
+    res.json({
+        success: false,
+        message:"Please Login"
+    })
+}
+app.post("/login", async (req, res) => {
+    let {email, password} = req.body;
+    let userExist = await User.findOne({email : email});
+    if(!userExist) {
+        return res.json({
+            success:false,
+            message:"please signup"
+        })
+    }
+    if(userExist.password != password){
+        return res.json({
+            success: false,
+            message: "Incorrect password"
+        })
+    }
+    let token = jwt.sign({"userId" : userExist._id}, "lop")
+    res.json({
+        success: true,
+        message: "Login successfull",
+        token: token
+    })
+})
 //create
-app.post("/blogs", async(req, res) => {
+app.post("/blogs", isLogin, async(req, res) => {
     let title = req.body.title;
     let body = req.body.body;
     let userId = req.body.userId;

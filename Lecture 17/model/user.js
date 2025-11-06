@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     names: String,
     email: String, 
-    date: Date
+    date: Date,
+    blogs:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"Blog"
+        }
+    ]
 });
 module.exports = mongoose.model('User', UserSchema);
